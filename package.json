@@ -13,7 +13,9 @@
   "scripts": {
     "lint": "tslint \"src/**/*.ts\" --project tsconfig.json",
     "build": "rm -rf dist && tsc",
-    "test-spec": "mocha src/test.ts",
+    "dev": "ts-node src/dev",
+    "clean-test": "rm -rf src/test && mkdir src/test",
+    "test-spec": "npm run clean-test && mocha src/test.ts",
     "test": "npm run test-spec",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build && npm test"
