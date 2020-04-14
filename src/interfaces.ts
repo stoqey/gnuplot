@@ -8,7 +8,7 @@ export interface SetUpOptions {
     xRange?: any;
     yRange?: any;
     margin?: any;
-    time: any;
+    time?: any;
     title?: any;
     titleSize?: any;
     logscale?: any;
@@ -23,10 +23,10 @@ export interface SetUpOptions {
 export interface PlotOptions extends SetUpOptions {
     data?: any;
     filename: string;
-    style: string;
-    moving_avg: number;
-    moving_max: number;
-    exec: any;
-    hideSeriesTitle: boolean;
-    finish: (data: any) => void;
+    style?: string;
+    moving_avg?: number;
+    moving_max?: number;
+    exec?: any;
+    hideSeriesTitle?: boolean;
+    finish?: Function;
 }
