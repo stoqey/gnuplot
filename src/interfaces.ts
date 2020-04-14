@@ -1,4 +1,4 @@
-import { ExecException } from "child_process";
+import { ExecException, ChildProcess } from "child_process";
 
 export interface SetUpOptions {
     format?: any;
@@ -10,7 +10,7 @@ export interface SetUpOptions {
     xRange?: any;
     yRange?: any;
     margin?: any;
-    time?: any;
+    time?: "hours" | "Hours" | "Days" | "days" | string;
     title?: any;
     titleSize?: any;
     logscale?: any;
@@ -22,6 +22,7 @@ export interface SetUpOptions {
     nokey?: any;
 }
 
+export type FinishFunc = (error: ExecException | null, stdout: string | Buffer, stderr: string | Buffer) => void;
 export interface PlotOptions extends SetUpOptions {
     data?: any;
     filename: string;
@@ -30,5 +31,5 @@ export interface PlotOptions extends SetUpOptions {
     moving_max?: number;
     exec?: any;
     hideSeriesTitle?: boolean;
-    finish?: (error: ExecException | null, stdout: string | Buffer, stderr: string | Buffer) => void;
+    finish?: FinishFunc;
 }

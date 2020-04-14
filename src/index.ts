@@ -2,7 +2,7 @@
  * this project is a fork of Richard Meadows's 'node-plotter'
  */
 
-import { exec } from 'child_process';
+import { exec, ExecException } from 'child_process';
 import _ from 'lodash';
 import { SetUpOptions, PlotOptions } from './interfaces';
 
@@ -64,10 +64,10 @@ function apply_moving_filter(set: { [x: string]: any; }, filter: { (array: numbe
 /**
  * Returns the string to give to gnuplot based on the value of options.time.
  */
-function time_format(options: { time: any; }) {
-	if (_.isString(options.time)) {
+function time_format(time: any) {
+	if (_.isString(time)) {
 		/* Translate the string we've been given into a format */
-		switch (options.time) {
+		switch (time) {
 			case 'days':
 			case 'Days':
 				return '%d/%m';
@@ -75,7 +75,7 @@ function time_format(options: { time: any; }) {
 			case 'Hours':
 				return '%H:%M';
 			default: /* Presume we've been given a gnuplot-readable time format string */
-				return options.time;
+				return time;
 		}
 	} else { /* Just default to hours */
 		return '%H:%M';
@@ -120,7 +120,7 @@ function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, 
 	if (options.time) {
 		gnuplot.stdin.write('set xdata time\n');
 		gnuplot.stdin.write('set timefmt "%s"\n');
-		gnuplot.stdin.write(`set format x "${time_format(options)}"\n`);
+		gnuplot.stdin.write(`set format x "${time_format(options.time)}"\n`);
 		gnuplot.stdin.write('set xlabel ""\n');
 	}
 	if (options.title) {
@@ -156,7 +156,7 @@ function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, 
 /**
  * Called after Gnuplot has finished.
  */
-function post_gnuplot_processing(error: string | null, stdout: string, stderr: string) {
+function post_gnuplot_processing(error: ExecException | null, stdout: string | Buffer, stderr: string | Buffer) {
 	/* Print stuff */
 	console.log('stdout: ' + stdout);
 	console.log('stderr: ' + stderr);
