@@ -1,7 +1,7 @@
 {
   "name": "@stoqey/gnuplot",
   "private": false,
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "Node gnuplot",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,11 +28,8 @@
     "url": "git://github.com/stoqey/gnuplot.git"
   },
   "keywords": [
-    "algorithms",
-    "strategies",
-    "backtesting",
-    "quant",
-    "stocks"
+    "gnuplot",
+    "stoqey"
   ],
   "author": {
     "name": "Ceddy Muhoza",
