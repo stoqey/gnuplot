@@ -1,3 +1,5 @@
+import { ExecException } from "child_process";
+
 export interface SetUpOptions {
     format?: any;
     font?: any;
@@ -28,5 +30,5 @@ export interface PlotOptions extends SetUpOptions {
     moving_max?: number;
     exec?: any;
     hideSeriesTitle?: boolean;
-    finish?: Function;
+    finish?: (error: ExecException | null, stdout: string | Buffer, stderr: string | Buffer) => void;
 }
