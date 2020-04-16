@@ -172,7 +172,7 @@ function post_gnuplot_processing(error: ExecException | null, stdout: string | B
  * Plots data to a PDF file. If it does not exist, the PDF file will
  * be created, otherwise this plot will be appended as a new page.
  */
-export function plot(options: PlotOptions) {
+function plotCallack(options: PlotOptions) {
 	/* Required Options */
 	if (!options.data || !options.filename) {
 		throw new Error('The options object must have \'data\' and \'filename\' properties!');
@@ -259,9 +259,18 @@ export function plot(options: PlotOptions) {
 	gnuplot.stdin.end();
 }
 
-export function plotAsync(options: PlotOptions): Promise<boolean> {
+/**
+ * Plots data to a PDF file. If it does not exist, the PDF file will
+ * be created, otherwise this plot will be appended as a new page.
+ */
+export function plot(options: PlotOptions): Promise<boolean> | void {
+	if (options.finish) {
+		return plotCallack(options);
+	}
+
+	// Promise
 	return new Promise((resolve, reject) => {
-		plot({
+		plotCallack({
 			...options,
 			finish: (error) => {
 				if (error) {

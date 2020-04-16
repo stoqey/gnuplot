@@ -24,9 +24,19 @@ npm install @stoqey/gnuplot
 ```javascript
 import plot from '@stoqey/gnuplot'
 
+// with callback
 plot({
 	data:		[ 3, 1, 2, 3, 4 ],
-	filename:	'output.png'
+	filename:	'output.png',
+	finish: (error) => {
+
+	}
+});
+
+// As promise
+const plotted = await plot({
+	data: [3, 1, 2, 3, 4],
+	filename: 'output1.png',
 });
 ```
 

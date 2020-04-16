@@ -28,7 +28,22 @@ describe('Plot tests', function () {
 	// 	});
 	// });
 
+	// describe('PNG output', function () {
+
+	// });
+
 	describe('PNG output', function () {
+
+		it('Async Output1', async () => {
+			const ploted = await plot({
+				data: [3, 1, 2, 3, 4],
+				filename: __dirname + '/test/output1.png',
+				format: 'png'
+			});
+
+			should(ploted).be.true;
+		});
+
 		it('Output1', function (done) {
 			plot({
 				data: [3, 1, 2, 3, 4],

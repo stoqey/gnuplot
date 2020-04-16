@@ -33,3 +33,13 @@ export interface PlotOptions extends SetUpOptions {
     hideSeriesTitle?: boolean;
     finish?: FinishFunc;
 }
+
+export interface AsyncPlotOptions extends SetUpOptions {
+    data?: any;
+    filename: string;
+    style?: string;
+    moving_avg?: number;
+    moving_max?: number;
+    exec?: any;
+    hideSeriesTitle?: boolean;
+}
