@@ -259,4 +259,18 @@ export function plot(options: PlotOptions) {
 	gnuplot.stdin.end();
 }
 
+export function plotAsync(options: PlotOptions): Promise<boolean> {
+	return new Promise((resolve, reject) => {
+		plot({
+			...options,
+			finish: (error) => {
+				if (error) {
+					return reject(error);
+				}
+				resolve(true);
+			}
+		})
+	})
+}
+
 export default plot;
