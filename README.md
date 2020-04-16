@@ -9,8 +9,17 @@
 
 Prerequisites:
 
-```
-sudo apt-get install gnuplot ghostscript libgd2-dev
+
+```bash
+# ubuntu
+sudo apt-get install gnuplot
+
+# alpine
+apk add gnuplot
+
+# mac
+brew install gnuplot
+
 ```
 
 To install package, just run:
