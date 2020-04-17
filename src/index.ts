@@ -89,9 +89,9 @@ function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, 
 		// gnuplot.stdin.write(`set term svg fname "${options.font || 'system-ui'}" fsize ${options.fontSize || 13}\n`);
 	} else if (options.format == 'pdf') {
 		/* PDF: setup Gnuplot output to postscript so ps2pdf can interpret it */
-		gnuplot.stdin.write(`set term postscript landscape enhanced color dashed "${options.font || 'Helvetica'}" fsize ${options.fontSize || 14}\n`);
+		gnuplot.stdin.write(`set term postscript landscape enhanced color dashed "${options.font || 'Arial'}" fsize ${options.fontSize || 14}\n`);
 	} else { /* Setup gnuplot for png */
-		gnuplot.stdin.write(`set term png size ${options.width || 800},${options.height || 640} font "${options.font || 'Helvetica'}, ${options.fontSize || 13}"\n`);
+		gnuplot.stdin.write(`set term png size ${options.width || 800},${options.height || 640} font "${options.font || 'Arial'}, ${options.fontSize || 13}"\n`);
 	}
 
 	/* Locale config */
