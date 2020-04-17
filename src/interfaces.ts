@@ -32,6 +32,7 @@ export interface PlotOptions extends SetUpOptions {
     exec?: any;
     hideSeriesTitle?: boolean;
     finish?: FinishFunc;
+    args?: string[]; // commands
 }
 
 export interface AsyncPlotOptions extends SetUpOptions {

@@ -84,7 +84,7 @@ function time_format(time: any) {
 /**
  * Sets up gnuplot based on the properties we're given in the options object.
  */
-function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, options: SetUpOptions) {
+function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, options: PlotOptions) {
 	if (options.format === 'svg') { /* Setup gnuplot for SVG */
 		// gnuplot.stdin.write(`set term svg fname "${options.font || 'system-ui'}" fsize ${options.fontSize || 13}\n`);
 	} else if (options.format == 'pdf') {
@@ -92,6 +92,11 @@ function setup_gnuplot(gnuplot: { stdin: { write: (arg0: string) => void; }; }, 
 		gnuplot.stdin.write(`set term postscript landscape enhanced color dashed "${options.font || 'Arial'}" fsize ${options.fontSize || 14}\n`);
 	} else { /* Setup gnuplot for png */
 		gnuplot.stdin.write(`set term png size ${options.width || 800},${options.height || 640} font "${options.font || 'Arial'}, ${options.fontSize || 13}"\n`);
+	}
+
+	if (options && options.args) {
+		const args = options.args || [];
+		args.forEach(a => gnuplot.stdin.write(`${a}\n`))
 	}
 
 	/* Locale config */

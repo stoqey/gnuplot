@@ -6,5 +6,7 @@ exec(`mkdir ${__dirname}/test`);
 plot({
     data: [3, 1, 2, 3, 4],
     filename: __dirname + '/test/outputXXX.png',
-    format: 'png'
+    format: 'png',
+    style: 'boxes',
+    args: ['set boxwidth 0.5', 'set style fill solid']
 });
